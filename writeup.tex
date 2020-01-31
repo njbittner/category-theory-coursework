@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{times}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\newcommand{\lm}{\lambda}
+
+
+
+
+\begin{document}
+\section*{Question 1}
+\begin{enumerate}[(a)]
+    \item see accompanying code
+    \item 9
+    \item 5
+\end{enumerate}
+
+\section*{Question 2}
+\begin{enumerate}[(a)]
+    \item
+        \begin{itemize}
+            \item objects: 1,2
+            \item homsets:
+            \begin{enumerate}
+                \item Hom(1,1): $\{id_1\}$
+                \item Hom(1,2), $\{f\}$
+                \item Hom(2,1), $\emptyset$
+                \item Hom(2,2), $id_2$
+            \end{enumerate}
+            \item Composition rules:
+            \begin{enumerate}
+                \item $id_1;f = f$
+                \item $id_1;id_1 = id_1$
+                \item $f;id_2 = f$
+                \item $id_2;id_2 = id_2$
+            \end{enumerate}
+            \item ids: $id_1, id_2$
+        \end{itemize}
+    \item
+        \begin{itemize}
+            \item Unity: Covered by composition rules a, c
+            \item Associativity: For all valid tripplets of composed morphisms, anything containing an identity automatically associates, by virtue of the composition rules 1 and 3. In this category, every morphism tripplet must contain at least one identity morphism. Therefore this category's morphisms are associative.
+            \item we could also do a proof by cases, enumerating all triplets and showing their equivalence using the composition rules to show equivalence:
+
+            \begin{tabular}{c|c|c|c|}
+                \textbf{term 1} & \textbf{term 2} & \textbf{both reduce to} & \textbf{composition rules used}\\
+                $(id_1; id_1); id_1$ & $id_1; (id_1; id_1)$ & $id_1$ & b\\
+                $(id_2; id_2); id_2$ & $id_2; (id_2; id_2)$ & $id_2$ & d\\
+                $(id_1; f); id_2$ & $id_1; (f; id_2)$ & f & a, c\\
+                $(f; id_2);id_2$ & $f;(id_2; id_2)$ & f & c, d\\
+                $(id_1; id_1); f$ & $id_1; (id_1; f)$ & f & a, b
+            \end{tabular}
+        \end{itemize}
+\end{enumerate}
+
+
+\section*{Question 3}
+Yes, assuming $f;g$ and $g;f$ are composable as explicitly given by a composition rule then $f;g = id_c$ and $g;f = id_d$. Taken together, the former reduces to $c->c$ and the latter to $d->d$, which is equivalent to the identity operators $id_c$ and $id_d$.
+
+\textcolor{red}{Details that I missed: $Hom(c,c)$ is defined to only contain the identity morphism. Therefore anything that reduces to $c->c$ is equivalent to this set, and is by definition the identity morphism. The definition of "isomorphism" means $f;g=id_c \land g;f=id_d$, so showing the reduction of both to the identities proves the isomorphism}
+
+\section*{Question 4}
+\begin{enumerate}[a]
+    \item Have a monoid. For simplicity, assume there are two morphisms, $f$ and $g$. define the composition law so that $f;g = g$, $g;f=g$, $f;f =g$, $g;g=g$. This ensures that associativity is always respected, as any string of compositions will always result in $g$. While unitivity is satisfied for $g$ by the rules $f;g = g$ and $g;g =g$, it is not for $f$, since there is no rule $x;f = f$ for $x \in {f,g}$
+    \textcolor{red}{is this possible to do for non-monoids?}
+
+    \item Monoid where morphisms are the natural numbers, identity is the number 1, and composition is exponentiation.
+\end{enumerate}
+
+\section*{Question 5}
+For a,b since the object, morphisms, and composition rules are defined for us, the only thing we have to do is show that the compositions satisfy unitivity and associativity.
+\begin{enumerate}[a]
+    \item
+        \begin{itemize}
+            \item + is a linear operator, so associativity will hold on $\mathbb{N}$.
+            \item 0 is importent under +, so unitivity will hold.
+        \end{itemize}
+    \item
+        \begin{itemize}
+            \item right-concatenation is associative by definition: $\forall a,b,c: (a;b);c = ab;c = abc \land a;(b;c) = a;bc = abc$
+            \item $\forall x: [];x = x \land x;[] = x$. Unitivity is satisfied
+        \end{itemize}
+    \item The object doesn't matter. The only thing that matters is the (implicit) composition table for the morphisms. The only time you need multiple objects is if some morphisms can't be applied after others. If every morphism is permitted at any time, only a single object is needed. Again, the structure of a category is in the composition table; objects simplify our understanding of the composition table by showing when it is prohibited to compose two morphisms.
+
+\end{enumerate}
+\section*{Question 6}
+\begin{enumerate}[a]
+    \item 1
+    \item this is equivallent to asking: "if a is divisible by b, and b is divisble by c, is a divisible by c?" yes. If $a/b=k_1$ and $b/c=k_2$, then $a/c=k_1k_2$. So composition of two morphisms is multiplication: $f;g = f*g$
+    \item If we added zero then you have to decide how to handle the Hom-set construction operator.
+    \begin{itemize}
+        \item $\forall y>0: P(0, y) = \emptyset$
+        \item $\forall y>0: p(y, 0) = {0}$
+        \item $P(0,0) = {x: 0*x = 0}$ which is an infinite set, which violates the preorder definition that there only be a single morphism between any two objecst.
+    \end{itemize}
+    So, no. given the Hom-set generator, Zero violates the preorder condition.
+    $a \cdot n $
+\end{enumerate}
+
+\section*{Question 7}
+\begin{enumerate}
+    \item
+        \begin{multline*}
+        (\text{AND } t) f \\
+            ((\lm p.(\lm q.(p q) p)) t) f \\
+            ((\lm q.(t q)) t) f\\
+            (t f) t \\
+            ((\lm x.(\lm y.x)) f) t \\
+            (\lm y.f)t\\
+            f\\
+        \end{multline*}
+    \item
+    \begin{multline*}
+        (\text{OR } f) t\\
+        ((\lm p.(\lm q.(pp)q)) f) t\\
+        (\lm q.(ff)q)t\\
+        (ff)t\\
+        ((\lm x.(\lm y.y))f)t\\
+        (\lm y.y)t\\
+        t\\
+    \end{multline*}
+\end{enumerate}
+
+\section*{Question 8}
+\begin{align*}
+    Yg\\
+    (\lm f.((\lm x.f(xx)) (\lm x.f(xx))))g\\
+    (\lm x.g(x x))(\lm x.g(x x))\\
+    g((\lm x.g(x x))(\lm x.g(x x)))\\
+    g(g((\lm x.g(x x)) (\lm x.g(x x))))\\
+    ...
+\end{align*}
+The pattern repeats forever: $g(g(...g((\lm x.g(xx))(\lm x.g(x x)))...))$
+
+\section*{Question 9}
+See accompanying code.
+
+\section*{Question 10}
+Question 9 was not well worded.
+Otherwise A+
+
+\end{document}

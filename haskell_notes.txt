@@ -1,0 +1,7 @@
+every expression has a type. including if statements.
+If statements must have else branches in order to predict type.
+If you don't declare an expression type, haskell's type inference algorithm will inferr one.
+
+
+Type-driven development: write out the morphisms of each function before coding your functions up.
+This way you reason about transformation composition.
