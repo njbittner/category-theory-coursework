@@ -1,0 +1,13 @@
+# Workspace
+assignment1
+
+# Haskell
+*.hi
+*.o
+
+# Latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex*
